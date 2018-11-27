@@ -27,6 +27,12 @@ android {
             versionNameSuffix '-debug'
         }
     }
+
+    testOptions {
+        unitTests {
+            includeAndroidResources = true
+        }
+    }
 }
 
 dependencies {
