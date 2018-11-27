@@ -10,10 +10,21 @@ android {
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
+
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+
+        local {
+            initWith buildTypes.release
+            signingConfig signingConfigs.debug
+            versionNameSuffix '-local'
+        }
+
+        debug {
+            versionNameSuffix '-debug'
         }
     }
 }
