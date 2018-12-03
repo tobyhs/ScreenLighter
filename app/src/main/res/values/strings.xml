@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Screen Lighter</string>
+    <string name="increased_screen_brightness">Increased screen brightness</string>
 </resources>
