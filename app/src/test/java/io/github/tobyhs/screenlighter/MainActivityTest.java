@@ -1,31 +1,34 @@
 package io.github.tobyhs.screenlighter;
 
-import android.app.AppOpsManager;
 import android.app.Application;
 import android.content.ContentResolver;
 import android.content.Intent;
-import android.os.Process;
 import android.provider.Settings;
 
 import androidx.test.core.app.ApplicationProvider;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
+
 import org.robolectric.Robolectric;
 import org.robolectric.RobolectricTestRunner;
-import org.robolectric.shadows.ShadowAppOpsManager;
+import org.robolectric.annotation.Config;
 import org.robolectric.shadows.ShadowApplication;
 import org.robolectric.shadows.ShadowToast;
 
+import io.github.tobyhs.screenlighter.shadows.ShadowSettingsSystem;
+
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
+
 import static org.robolectric.Shadows.shadowOf;
 
 @RunWith(RobolectricTestRunner.class)
 public class MainActivityTest {
+    private Application application = ApplicationProvider.getApplicationContext();
+
     @Test
     public void increaseBrightness() {
-        Application application = ApplicationProvider.getApplicationContext();
         ContentResolver contentResolver = application.getContentResolver();
         Settings.System.putInt(contentResolver, Settings.System.SCREEN_BRIGHTNESS, 5);
         MainActivity activity = Robolectric.setupActivity(MainActivity.class);
@@ -42,11 +45,9 @@ public class MainActivityTest {
     }
 
     @Test
+    @Config(shadows = {ShadowSettingsSystem.class})
     public void requestWriteSettingsPermission() {
-        Application application = ApplicationProvider.getApplicationContext();
-        ShadowAppOpsManager appOpsManager = shadowOf(application.getSystemService(AppOpsManager.class));
-        // This was the best I could come up with to make Settings.System.canWrite return false
-        appOpsManager.setMode(AppOpsManager.OPSTR_WRITE_SETTINGS, Process.myUid(), "android", AppOpsManager.MODE_IGNORED);
+        ShadowSettingsSystem.setCanWrite(false);
         MainActivity activity = Robolectric.setupActivity(MainActivity.class);
 
         ShadowApplication shadowApp = shadowOf(application);
