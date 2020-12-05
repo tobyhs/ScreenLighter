@@ -19,10 +19,11 @@ public class MainActivity extends Activity {
 
         if (Settings.System.canWrite(this)) {
             increaseBrightness();
+            finishAndRemoveTask();
         } else {
             requestWriteSettingsPermission();
+            finish();
         }
-        finish();
     }
 
     private void increaseBrightness() {
