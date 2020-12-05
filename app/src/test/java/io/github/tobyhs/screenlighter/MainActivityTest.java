@@ -8,11 +8,11 @@ import android.provider.Settings;
 import androidx.lifecycle.Lifecycle;
 import androidx.test.core.app.ActivityScenario;
 import androidx.test.core.app.ApplicationProvider;
+import androidx.test.ext.junit.runners.AndroidJUnit4;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import org.robolectric.RobolectricTestRunner;
 import org.robolectric.annotation.Config;
 import org.robolectric.shadows.ShadowApplication;
 import org.robolectric.shadows.ShadowToast;
@@ -26,9 +26,9 @@ import static org.hamcrest.Matchers.is;
 
 import static org.robolectric.Shadows.shadowOf;
 
-@RunWith(RobolectricTestRunner.class)
+@RunWith(AndroidJUnit4.class)
 public class MainActivityTest {
-    private Application application = ApplicationProvider.getApplicationContext();
+    private final Application application = ApplicationProvider.getApplicationContext();
 
     @Test
     public void increaseBrightness() {
