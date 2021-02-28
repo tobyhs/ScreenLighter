@@ -21,8 +21,8 @@ import io.github.tobyhs.screenlighter.shadows.ShadowSettingsSystem;
 
 import static androidx.test.core.app.ActivityScenario.launch;
 
+import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.is;
 
 import static org.robolectric.Shadows.shadowOf;
 
