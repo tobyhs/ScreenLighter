@@ -1,8 +1,8 @@
 apply plugin: 'com.android.application'
 
 android {
+    namespace 'io.github.tobyhs.screenlighter'
     compileSdkVersion 33
-    buildToolsVersion '33.0.0'
 
     defaultConfig {
         applicationId "io.github.tobyhs.screenlighter"
