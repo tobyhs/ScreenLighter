@@ -1,6 +1,7 @@
 package io.github.tobyhs.screenlighter;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.ContentResolver;
 import android.content.Intent;
 import android.net.Uri;
@@ -22,7 +23,6 @@ public class MainActivity extends Activity {
             finishAndRemoveTask();
         } else {
             requestWriteSettingsPermission();
-            finish();
         }
     }
 
@@ -35,8 +35,19 @@ public class MainActivity extends Activity {
     }
 
     private void requestWriteSettingsPermission() {
-        Intent intent = new Intent(Settings.ACTION_MANAGE_WRITE_SETTINGS);
-        intent.setData(Uri.parse("package:" + getApplicationInfo().packageName));
-        startActivity(intent);
+        new AlertDialog.Builder(this)
+                .setMessage(R.string.write_permissions_prompt)
+                .setPositiveButton(android.R.string.ok, null)
+                .setOnDismissListener(dialog -> {
+                    Intent intent = new Intent(Settings.ACTION_MANAGE_WRITE_SETTINGS);
+                    intent.setData(Uri.parse("package:" + getApplicationInfo().packageName));
+                    startActivityForResult(intent, 0);
+                })
+                .show();
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        finishAndRemoveTask();
     }
 }

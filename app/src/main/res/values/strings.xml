@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">Screen Lighter</string>
     <string name="increased_screen_brightness">Increased screen brightness</string>
+    <string name="write_permissions_prompt">Grant permission to modify system settings so the app can increase screen brightness.</string>
 </resources>
