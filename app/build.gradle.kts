@@ -4,12 +4,12 @@ plugins {
 
 android {
     namespace = "io.github.tobyhs.screenlighter"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "io.github.tobyhs.screenlighter"
         minSdk = 23
-        targetSdk = 34
+        targetSdk = 35
         versionCode = 1
         versionName = "1.0"
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
@@ -53,5 +53,5 @@ dependencies {
     val espressoVersion = "3.6.1"
     testImplementation("androidx.test.espresso:espresso-core:$espressoVersion")
     testImplementation("androidx.test.espresso:espresso-intents:$espressoVersion")
-    testImplementation("org.robolectric:robolectric:4.11.1")
+    testImplementation("org.robolectric:robolectric:4.14.1")
 }
